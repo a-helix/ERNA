@@ -10,6 +10,7 @@ namespace db_data
 	public:
 		explicit WormBaseComplementaryDna(const std::string& input_data, const char& delimiter, bioutilities::GeneticCodeFactory& factory);
 		virtual ~WormBaseComplementaryDna();
+		WormBaseComplementaryDna() = delete;
 
 	protected:
 		void AssignSplitedData() override;

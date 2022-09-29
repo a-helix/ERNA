@@ -49,7 +49,6 @@ namespace app
 					// TODO: add some help info
 				}
 
-
 				else if (console_argument.compare("-i") == 0)
 				{
 					WrongArgumentFormat(i);

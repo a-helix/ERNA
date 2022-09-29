@@ -15,6 +15,7 @@ namespace input
 			explicit InputFile(const std::filesystem::path& path_to_file);
 			virtual ~InputFile();
 			virtual void Save(const std::filesystem::path& path_to_file, const char& delimiter) = 0;
+			InputFile() = delete;
 
 		protected:
 			std::vector<std::string> _file_data;
@@ -25,6 +26,7 @@ namespace input
 		public:
 			explicit WormBaseRnaSequencesFile(const std::filesystem::path& path_to_file, const char& delimiter, bioutilities::GeneticCodeFactory& factory);
 			virtual ~WormBaseRnaSequencesFile();
+			WormBaseRnaSequencesFile() = delete;
 
 			void Save(const std::filesystem::path& path_to_file, const char& delimiter) override;
 

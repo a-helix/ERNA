@@ -11,7 +11,7 @@ namespace app
 		public:
 			virtual ~App();
 			App() = delete;
-			App(int32_t argc, char* argv[]);
+			explicit App(int32_t argc, char* argv[]);
 			void Run();
 
 		private:

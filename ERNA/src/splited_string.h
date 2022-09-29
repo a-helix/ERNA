@@ -13,6 +13,8 @@ namespace splited_string
 	public:
 		explicit SplitedString(const std::string& string, const char& delimiter);
 		virtual ~SplitedString();
+		SplitedString() = delete;
+
 		std::vector<std::string> ToVector();
 
 	private:
