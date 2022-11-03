@@ -1,4 +1,4 @@
-#include "app.h"
+#include "app.hpp"
 
 namespace app
 {
@@ -9,8 +9,6 @@ namespace app
 		_argv = argv;
 	}
 
-	App::~App() {};
-
 	void App::WrongArgumentFormat(const int32_t& iteration)
 	{
 		if (iteration + 1 >= _argc)
@@ -19,7 +17,7 @@ namespace app
 		}
 	}
 
-	char App::ProcessDelimiter(char& delimiter)
+	char App::ProcessDelimiter(const char& delimiter)
 	{
 		auto map_parsed_delimiter = comand_line_delimiters.find(delimiter);
 		if (map_parsed_delimiter != comand_line_delimiters.end())
@@ -98,7 +96,7 @@ namespace app
 				}
 			}
 		}
-		catch (const std::bad_alloc& ba)
+		catch (const std::bad_alloc&)
 		{
 			std::cout << "ERROR! Check delimiters format.";
 			return std::exit(1);

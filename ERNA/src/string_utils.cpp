@@ -1,4 +1,4 @@
-#include "splited_string.h"
+#include "string_utils.hpp"
 
 namespace splited_string
 {
@@ -15,7 +15,10 @@ namespace splited_string
 
 	}
 
-	SplitedString::~SplitedString() {};
+	std::string SplitedString::At(const size_t index)
+	{
+		return _splited_string.at(index);
+	}
 
 	std::vector<std::string> SplitedString::ToVector() { return _splited_string; }
 }

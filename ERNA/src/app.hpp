@@ -1,22 +1,20 @@
 #pragma once
 
 #include <filesystem>
-#include "bioutilities.h"
-#include "input.h"
+#include "bioutilities.hpp"
+#include "input.hpp"
 
 namespace app
 {
 	class App
 	{
 		public:
-			virtual ~App();
-			App() = delete;
 			explicit App(int32_t argc, char* argv[]);
 			void Run();
 
 		private:
 			inline void WrongArgumentFormat(const int32_t &iteration);
-			inline char ProcessDelimiter(char& delimiter);
+			inline char ProcessDelimiter(const char& delimiter);
 
 			bioutilities::GeneticCodeFactory factory;
 			int32_t _argc;

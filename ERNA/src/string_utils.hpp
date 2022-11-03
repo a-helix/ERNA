@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include "splited_string.h"
+
 
 namespace splited_string
 {
@@ -12,10 +12,8 @@ namespace splited_string
 	{
 	public:
 		explicit SplitedString(const std::string& string, const char& delimiter);
-		virtual ~SplitedString();
-		SplitedString() = delete;
-
 		std::vector<std::string> ToVector();
+		std::string At(const size_t index);
 
 	private:
 		std::vector<std::string> _splited_string;

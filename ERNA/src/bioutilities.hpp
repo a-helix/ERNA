@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <format>
-#include "splited_string.h"
+#include "string_utils.hpp"
 
 namespace bioutilities
 {
@@ -54,12 +54,10 @@ namespace bioutilities
 	class Codon
 	{
 	public:
-		 Codon() = delete;
 		 explicit Codon(DNA_Codon dna_codon,
 						RNA_Codon rna_codon,
 						AA_3Char aa_3char,
 						AA_1Char aa_1char);
-		 virtual ~Codon();
 
 		DNA_Codon DnaCodon();
 		RNA_Codon RnaCodon();
@@ -70,28 +68,27 @@ namespace bioutilities
 	protected:
 		DNA_Codon _dna_codon;
 		RNA_Codon _rna_codon;
-		 AA_3Char _aa_3char;
-		 AA_1Char _aa_1char;
+		AA_3Char _aa_3char;
+		AA_1Char _aa_1char;
 	};
 
 	class GeneticCodeFactory
 	{
 	public:
 		explicit GeneticCodeFactory();
-		virtual ~GeneticCodeFactory();
 
-		Codon DnaCodon(const std::string& dna_codon);
-		Codon RnaCodon(const std::string& rna_codon);
-		Codon AA3Char(const std::string& aa_3char);
-		Codon AA1Char(const std::string& aa_1char);
+		std::shared_ptr<Codon> DnaCodon(const std::string& dna_codon);
+		std::shared_ptr<Codon> RnaCodon(const std::string& rna_codon);
+		std::shared_ptr<Codon> AA3Char(const std::string& aa_3char);
+		std::shared_ptr<Codon> AA1Char(const std::string& aa_1char);
 
-		std::string CodonToDnaString(Codon& input);
-		std::string CodonToRnaString(Codon& input);
-		std::string CodonToAA3CharString(Codon& input);
-		std::string CodonToAA1CharString(Codon& input);
+		std::string CodonToDnaString(std::shared_ptr<Codon>& input);
+		std::string CodonToRnaString(std::shared_ptr<Codon>& input);
+		std::string CodonToAA3CharString(std::shared_ptr<Codon>& input);
+		std::string CodonToAA1CharString(std::shared_ptr<Codon>& input);
 
 	protected:
-		std::vector<Codon> _genetic_code_buffer;
+		std::vector<std::shared_ptr<Codon>> _genetic_code_buffer;
 		std::unordered_map<std::string, DNA_Codon> _dna_codon_map;
 		std::unordered_map<std::string, RNA_Codon> _rna_codon_map;
 		std::unordered_map<std::string, AA_3Char> _aa_3char_map;
@@ -102,21 +99,21 @@ namespace bioutilities
 	{
 	public:
 		explicit CodonSequence();
-		explicit CodonSequence(const std::vector<Codon>& frame, const size_t& start);
-		virtual ~CodonSequence();
+		explicit CodonSequence(const std::vector<std::shared_ptr<Codon>>& frame, const size_t& start);
+
 
 		size_t SizeInCodons();
 		size_t SizeInNucleotides();
 		size_t Start();
 		size_t End();
-		Codon& At(size_t index);
-		void PushBack(Codon codon);
+		std::shared_ptr<Codon> At(size_t index);
+		void PushBack(const std::shared_ptr<Codon>& codon);
 		bool operator==(CodonSequence& obj);
-		std::vector<Codon> ToVector();
+		std::vector<std::shared_ptr<Codon>> ToVector();
 		std::string ToDnaString(GeneticCodeFactory& factory);
 
 	protected:
-		std::vector<Codon> _frame;
+		std::vector<std::shared_ptr<Codon>> _frame;
 		size_t _size_in_codones;
 		size_t _start;
 		size_t _end;
@@ -125,44 +122,52 @@ namespace bioutilities
 	class cDNA
 	{
 	public:
-		virtual ~cDNA();
-
-					std::string DatabaseID();
-					std::string Gene();
-					std::string TranscriptID();
-					std::string RawRnaDataString();
-	 std::vector<CodonSequence> Frames();
-				  CodonSequence MainORF();
-					std::string FivePrimeUTR();
-					std::string ThreePrimeUTR();
-	 std::vector<CodonSequence> uORFs();
-						 size_t SumOfuORFs();
-			std::vector<size_t> AataaStartIndexes();
+		std::string DatabaseID();
+		std::string Gene();
+		std::string TranscriptID();
+		std::string RawRnaDataString();
+		std::vector<CodonSequence> Frames();
+		CodonSequence MainORF();
+		std::string FivePrimeUTR();
+		std::string ThreePrimeUTR();
+		std::vector<CodonSequence> uORFs();
+		size_t SumOfuORFs();
+		std::vector<size_t> AataaStartIndexes();
 
 	protected:
 		virtual void AssignSplitedData() = 0;
-		void CalculateThreeFrames(std::string& raw_sequense, bioutilities::GeneticCodeFactory& factory);
+		void CalculateThreeFrames(std::string& raw_sequense, GeneticCodeFactory& factory);
 		void SetLongestORF();
-		void CalculateUtrRegions(bioutilities::GeneticCodeFactory& factory);
+		void CalculateUtrRegions(GeneticCodeFactory& factory);
 		void CalculateAllORFs();
 		void SortOnlyMicroORFs();
 		void FindAATAAASequences();
 
 		//Basic info
-	   std::vector<std::string> _delimiter_separated_input;
-					std::string _raw_rna_data_string;
-					std::string _database_id;
-					std::string _gene_name;
-					std::string _transcript_id;
+		std::vector<std::string> _delimiter_separated_input;
+		std::string _raw_rna_data_string;
+		std::string _database_id;
+		std::string _gene_name;
+		std::string _transcript_id;
 		//cDNA structure elements 
-		 std::vector<bioutilities::CodonSequence> _frames; // Three posible reading frames
-					  bioutilities::CodonSequence _ORF; // Longest uORF
-									  std::string _5primeUTR;
-									  std::string _3primeUTR;
+		 std::vector<CodonSequence> _frames; // Three posible reading frames
+		CodonSequence _ORF; // Longest uORF
+		std::string _5primeUTR;
+		std::string _3primeUTR;
 		//uORFs
-		 std::vector<bioutilities::CodonSequence> _uORFs;
-										   size_t _sum_of_uORFs;
+		 std::vector<CodonSequence> _uORFs;
+		size_t _sum_of_uORFs;
 		//Specific seqences
-							  std::vector<size_t> _aataaa_start_indexes; //AATAAA sequences in 3'-UTR
+		std::vector<size_t> _aataaa_start_indexes; //AATAAA sequences in 3'-UTR
+	};
+
+	class ComplementarySequences
+	{
+
+	};
+
+	class ComplementarySequencesProcessor
+	{
+
 	};
 }

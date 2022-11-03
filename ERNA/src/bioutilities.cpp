@@ -1,12 +1,10 @@
-#include "bioutilities.h"
+#include "bioutilities.hpp"
 
 namespace bioutilities
 {
 	//Codon class implementation start
 	Codon::Codon(DNA_Codon dna_codon, RNA_Codon rna_codon, AA_3Char aa_3char, AA_1Char aa_1char)
 		: _dna_codon(dna_codon), _rna_codon(rna_codon), _aa_3char(aa_3char), _aa_1char(aa_1char) {}
-
-	Codon::~Codon() {}
 
 	DNA_Codon Codon::DnaCodon() { return _dna_codon; }
 	RNA_Codon Codon::RnaCodon() { return _rna_codon; }
@@ -91,78 +89,76 @@ namespace bioutilities
 
 		_genetic_code_buffer.insert(_genetic_code_buffer.end(),
 		{
-			Codon(DNA_Codon::GCT, RNA_Codon::GCU, AA_3Char::Ala,  AA_1Char::A),
-			Codon(DNA_Codon::GCC, RNA_Codon::GCC, AA_3Char::Ala,  AA_1Char::A),
-			Codon(DNA_Codon::GCG, RNA_Codon::GCG, AA_3Char::Ala,  AA_1Char::A),
-			Codon(DNA_Codon::GCA, RNA_Codon::GCA, AA_3Char::Ala,  AA_1Char::A),
-			Codon(DNA_Codon::TGT, RNA_Codon::UGU, AA_3Char::Cys,  AA_1Char::C),
-			Codon(DNA_Codon::TGC, RNA_Codon::UGC, AA_3Char::Cys,  AA_1Char::C),
-			Codon(DNA_Codon::GAT, RNA_Codon::GAU, AA_3Char::Asp,  AA_1Char::D),
-			Codon(DNA_Codon::GAC, RNA_Codon::GAC, AA_3Char::Asp,  AA_1Char::D),
-			Codon(DNA_Codon::GAA, RNA_Codon::GAA, AA_3Char::Glu,  AA_1Char::E),
-			Codon(DNA_Codon::GAG, RNA_Codon::GAG, AA_3Char::Glu,  AA_1Char::E),
-			Codon(DNA_Codon::TTT, RNA_Codon::UUU, AA_3Char::Phe,  AA_1Char::F),
-			Codon(DNA_Codon::TTC, RNA_Codon::UUC, AA_3Char::Phe,  AA_1Char::F),
-			Codon(DNA_Codon::GGT, RNA_Codon::GGU, AA_3Char::Gly,  AA_1Char::G),
-			Codon(DNA_Codon::GGC, RNA_Codon::GGC, AA_3Char::Gly,  AA_1Char::G),
-			Codon(DNA_Codon::GGA, RNA_Codon::GGA, AA_3Char::Gly,  AA_1Char::G),
-			Codon(DNA_Codon::GGG, RNA_Codon::GGG, AA_3Char::Gly,  AA_1Char::G),
-			Codon(DNA_Codon::CAT, RNA_Codon::CAU, AA_3Char::His,  AA_1Char::H),
-			Codon(DNA_Codon::CAC, RNA_Codon::CAC, AA_3Char::His,  AA_1Char::H),
-			Codon(DNA_Codon::ATT, RNA_Codon::AUU, AA_3Char::Ile,  AA_1Char::I),
-			Codon(DNA_Codon::ATA, RNA_Codon::AUA, AA_3Char::Ile,  AA_1Char::I),
-			Codon(DNA_Codon::ATC, RNA_Codon::AUC, AA_3Char::Ile,  AA_1Char::I),
-			Codon(DNA_Codon::AAA, RNA_Codon::AAA, AA_3Char::Lys,  AA_1Char::K),
-			Codon(DNA_Codon::AAG, RNA_Codon::AAG, AA_3Char::Lys,  AA_1Char::K),
-			Codon(DNA_Codon::TTA, RNA_Codon::UUA, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::TTG, RNA_Codon::UUG, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::CTC, RNA_Codon::CUC, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::CTT, RNA_Codon::CUU, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::CTA, RNA_Codon::CUA, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::CTG, RNA_Codon::CUG, AA_3Char::Leu,  AA_1Char::L),
-			Codon(DNA_Codon::ATG, RNA_Codon::AUG, AA_3Char::Met,  AA_1Char::M),
-			Codon(DNA_Codon::AAC, RNA_Codon::AAC, AA_3Char::Asn,  AA_1Char::N),
-			Codon(DNA_Codon::AAT, RNA_Codon::AAU, AA_3Char::Asn,  AA_1Char::N),
-			Codon(DNA_Codon::CCT, RNA_Codon::CCU, AA_3Char::Pro,  AA_1Char::P),
-			Codon(DNA_Codon::CCC, RNA_Codon::CCC, AA_3Char::Pro,  AA_1Char::P),
-			Codon(DNA_Codon::CCA, RNA_Codon::CCA, AA_3Char::Pro,  AA_1Char::P),
-			Codon(DNA_Codon::CCG, RNA_Codon::CCG, AA_3Char::Pro,  AA_1Char::P),
-			Codon(DNA_Codon::CAA, RNA_Codon::CAA, AA_3Char::Gln,  AA_1Char::Q),
-			Codon(DNA_Codon::CAG, RNA_Codon::CAG, AA_3Char::Gln,  AA_1Char::Q),
-			Codon(DNA_Codon::CGA, RNA_Codon::CGA, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::CGG, RNA_Codon::CGG, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::AGA, RNA_Codon::AGA, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::AGG, RNA_Codon::AGG, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::CGT, RNA_Codon::CGU, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::CGC, RNA_Codon::CGC, AA_3Char::Arg,  AA_1Char::R),
-			Codon(DNA_Codon::TCT, RNA_Codon::UCU, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::TCC, RNA_Codon::UCC, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::TCA, RNA_Codon::UCA, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::AGC, RNA_Codon::AGC, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::TCG, RNA_Codon::UCG, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::AGT, RNA_Codon::AGU, AA_3Char::Ser,  AA_1Char::S),
-			Codon(DNA_Codon::ACT, RNA_Codon::ACU, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::ACC, RNA_Codon::ACC, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::ACA, RNA_Codon::ACA, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::ACG, RNA_Codon::ACG, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::TAT, RNA_Codon::UAU, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::TAC, RNA_Codon::UAC, AA_3Char::Thr,  AA_1Char::T),
-			Codon(DNA_Codon::GTT, RNA_Codon::GUU, AA_3Char::Val,  AA_1Char::V),
-			Codon(DNA_Codon::GTC, RNA_Codon::GUC, AA_3Char::Val,  AA_1Char::V),
-			Codon(DNA_Codon::GTA, RNA_Codon::GUA, AA_3Char::Val,  AA_1Char::V),
-			Codon(DNA_Codon::GTG, RNA_Codon::GUG, AA_3Char::Val,  AA_1Char::V),
-			Codon(DNA_Codon::TGG, RNA_Codon::UGG, AA_3Char::Trp,  AA_1Char::W),
-			Codon(DNA_Codon::TAA, RNA_Codon::UAA, AA_3Char::Stop, AA_1Char::Stop),
-			Codon(DNA_Codon::TGA, RNA_Codon::UGA, AA_3Char::Stop, AA_1Char::Stop),
-			Codon(DNA_Codon::TAG, RNA_Codon::UAG, AA_3Char::Stop, AA_1Char::Stop)
+			std::make_shared<Codon>(DNA_Codon::GCT, RNA_Codon::GCU, AA_3Char::Ala,  AA_1Char::A),
+			std::make_shared<Codon>(DNA_Codon::GCC, RNA_Codon::GCC, AA_3Char::Ala,  AA_1Char::A),
+			std::make_shared<Codon>(DNA_Codon::GCG, RNA_Codon::GCG, AA_3Char::Ala,  AA_1Char::A),
+			std::make_shared<Codon>(DNA_Codon::GCA, RNA_Codon::GCA, AA_3Char::Ala,  AA_1Char::A),
+			std::make_shared<Codon>(DNA_Codon::TGT, RNA_Codon::UGU, AA_3Char::Cys,  AA_1Char::C),
+			std::make_shared<Codon>(DNA_Codon::TGC, RNA_Codon::UGC, AA_3Char::Cys,  AA_1Char::C),
+			std::make_shared<Codon>(DNA_Codon::GAT, RNA_Codon::GAU, AA_3Char::Asp,  AA_1Char::D),
+			std::make_shared<Codon>(DNA_Codon::GAC, RNA_Codon::GAC, AA_3Char::Asp,  AA_1Char::D),
+			std::make_shared<Codon>(DNA_Codon::GAA, RNA_Codon::GAA, AA_3Char::Glu,  AA_1Char::E),
+			std::make_shared<Codon>(DNA_Codon::GAG, RNA_Codon::GAG, AA_3Char::Glu,  AA_1Char::E),
+			std::make_shared<Codon>(DNA_Codon::TTT, RNA_Codon::UUU, AA_3Char::Phe,  AA_1Char::F),
+			std::make_shared<Codon>(DNA_Codon::TTC, RNA_Codon::UUC, AA_3Char::Phe,  AA_1Char::F),
+			std::make_shared<Codon>(DNA_Codon::GGT, RNA_Codon::GGU, AA_3Char::Gly,  AA_1Char::G),
+			std::make_shared<Codon>(DNA_Codon::GGC, RNA_Codon::GGC, AA_3Char::Gly,  AA_1Char::G),
+			std::make_shared<Codon>(DNA_Codon::GGA, RNA_Codon::GGA, AA_3Char::Gly,  AA_1Char::G),
+			std::make_shared<Codon>(DNA_Codon::GGG, RNA_Codon::GGG, AA_3Char::Gly,  AA_1Char::G),
+			std::make_shared<Codon>(DNA_Codon::CAT, RNA_Codon::CAU, AA_3Char::His,  AA_1Char::H),
+			std::make_shared<Codon>(DNA_Codon::CAC, RNA_Codon::CAC, AA_3Char::His,  AA_1Char::H),
+			std::make_shared<Codon>(DNA_Codon::ATT, RNA_Codon::AUU, AA_3Char::Ile,  AA_1Char::I),
+			std::make_shared<Codon>(DNA_Codon::ATA, RNA_Codon::AUA, AA_3Char::Ile,  AA_1Char::I),
+			std::make_shared<Codon>(DNA_Codon::ATC, RNA_Codon::AUC, AA_3Char::Ile,  AA_1Char::I),
+			std::make_shared<Codon>(DNA_Codon::AAA, RNA_Codon::AAA, AA_3Char::Lys,  AA_1Char::K),
+			std::make_shared<Codon>(DNA_Codon::AAG, RNA_Codon::AAG, AA_3Char::Lys,  AA_1Char::K),
+			std::make_shared<Codon>(DNA_Codon::TTA, RNA_Codon::UUA, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::TTG, RNA_Codon::UUG, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::CTC, RNA_Codon::CUC, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::CTT, RNA_Codon::CUU, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::CTA, RNA_Codon::CUA, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::CTG, RNA_Codon::CUG, AA_3Char::Leu,  AA_1Char::L),
+			std::make_shared<Codon>(DNA_Codon::ATG, RNA_Codon::AUG, AA_3Char::Met,  AA_1Char::M),
+			std::make_shared<Codon>(DNA_Codon::AAC, RNA_Codon::AAC, AA_3Char::Asn,  AA_1Char::N),
+			std::make_shared<Codon>(DNA_Codon::AAT, RNA_Codon::AAU, AA_3Char::Asn,  AA_1Char::N),
+			std::make_shared<Codon>(DNA_Codon::CCT, RNA_Codon::CCU, AA_3Char::Pro,  AA_1Char::P),
+			std::make_shared<Codon>(DNA_Codon::CCC, RNA_Codon::CCC, AA_3Char::Pro,  AA_1Char::P),
+			std::make_shared<Codon>(DNA_Codon::CCA, RNA_Codon::CCA, AA_3Char::Pro,  AA_1Char::P),
+			std::make_shared<Codon>(DNA_Codon::CCG, RNA_Codon::CCG, AA_3Char::Pro,  AA_1Char::P),
+			std::make_shared<Codon>(DNA_Codon::CAA, RNA_Codon::CAA, AA_3Char::Gln,  AA_1Char::Q),
+			std::make_shared<Codon>(DNA_Codon::CAG, RNA_Codon::CAG, AA_3Char::Gln,  AA_1Char::Q),
+			std::make_shared<Codon>(DNA_Codon::CGA, RNA_Codon::CGA, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::CGG, RNA_Codon::CGG, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::AGA, RNA_Codon::AGA, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::AGG, RNA_Codon::AGG, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::CGT, RNA_Codon::CGU, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::CGC, RNA_Codon::CGC, AA_3Char::Arg,  AA_1Char::R),
+			std::make_shared<Codon>(DNA_Codon::TCT, RNA_Codon::UCU, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::TCC, RNA_Codon::UCC, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::TCA, RNA_Codon::UCA, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::AGC, RNA_Codon::AGC, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::TCG, RNA_Codon::UCG, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::AGT, RNA_Codon::AGU, AA_3Char::Ser,  AA_1Char::S),
+			std::make_shared<Codon>(DNA_Codon::ACT, RNA_Codon::ACU, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::ACC, RNA_Codon::ACC, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::ACA, RNA_Codon::ACA, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::ACG, RNA_Codon::ACG, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::TAT, RNA_Codon::UAU, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::TAC, RNA_Codon::UAC, AA_3Char::Thr,  AA_1Char::T),
+			std::make_shared<Codon>(DNA_Codon::GTT, RNA_Codon::GUU, AA_3Char::Val,  AA_1Char::V),
+			std::make_shared<Codon>(DNA_Codon::GTC, RNA_Codon::GUC, AA_3Char::Val,  AA_1Char::V),
+			std::make_shared<Codon>(DNA_Codon::GTA, RNA_Codon::GUA, AA_3Char::Val,  AA_1Char::V),
+			std::make_shared<Codon>(DNA_Codon::GTG, RNA_Codon::GUG, AA_3Char::Val,  AA_1Char::V),
+			std::make_shared<Codon>(DNA_Codon::TGG, RNA_Codon::UGG, AA_3Char::Trp,  AA_1Char::W),
+			std::make_shared<Codon>(DNA_Codon::TAA, RNA_Codon::UAA, AA_3Char::Stop, AA_1Char::Stop),
+			std::make_shared<Codon>(DNA_Codon::TGA, RNA_Codon::UGA, AA_3Char::Stop, AA_1Char::Stop),
+			std::make_shared<Codon>(DNA_Codon::TAG, RNA_Codon::UAG, AA_3Char::Stop, AA_1Char::Stop)
 		});
 	}
 	//Codon class implementation end
 
 	//GeneticCodeFactory class implementation start
-	GeneticCodeFactory::~GeneticCodeFactory() {}
-
-	Codon GeneticCodeFactory::DnaCodon(const std::string& dna_codon)
+	std::shared_ptr<Codon> GeneticCodeFactory::DnaCodon(const std::string& dna_codon)
 	{
 
 		auto search = _dna_codon_map.find(dna_codon);
@@ -172,12 +168,12 @@ namespace bioutilities
 		}
 		for (auto& x : _genetic_code_buffer)
 		{
-			if (x.DnaCodon() == search->second)
+			if (x->DnaCodon() == search->second)
 				return x;
 		}
 	}
 
-	Codon GeneticCodeFactory::RnaCodon(const std::string& rna_codon)
+	std::shared_ptr<Codon> GeneticCodeFactory::RnaCodon(const std::string& rna_codon)
 	{
 		auto search = _rna_codon_map.find(rna_codon);
 		if (search == _rna_codon_map.end())
@@ -186,12 +182,12 @@ namespace bioutilities
 		}
 		for (auto& x : _genetic_code_buffer)
 		{
-			if (x.RnaCodon() == (RNA_Codon)search->second)
+			if (x->RnaCodon() == (RNA_Codon)search->second)
 				return x;
 		}
 	}
 
-	Codon GeneticCodeFactory::AA3Char(const std::string& aa_3char)
+	std::shared_ptr<Codon> GeneticCodeFactory::AA3Char(const std::string& aa_3char)
 	{
 		auto search = _aa_3char_map.find(aa_3char);
 		if (search == _aa_3char_map.end())
@@ -200,12 +196,12 @@ namespace bioutilities
 		}
 		for (auto& x : _genetic_code_buffer)
 		{
-			if (x.AA3Char() == (AA_3Char)search->second)
+			if (x->AA3Char() == (AA_3Char)search->second)
 				return x;
 		}
 	}
 
-	Codon GeneticCodeFactory::AA1Char(const std::string& aa_1char)
+	std::shared_ptr<Codon> GeneticCodeFactory::AA1Char(const std::string& aa_1char)
 	{
 		auto search = _aa_1char_map.find(aa_1char);
 		if (search == _aa_1char_map.end())
@@ -214,14 +210,14 @@ namespace bioutilities
 		}
 		for (auto& x : _genetic_code_buffer)
 		{
-			if (x.AA1Char() == (AA_1Char)search->second)
+			if (x->AA1Char() == (AA_1Char)search->second)
 				return x;
 		}
 	}
 
-	std::string GeneticCodeFactory::CodonToDnaString(Codon& input)
+	std::string GeneticCodeFactory::CodonToDnaString(std::shared_ptr<Codon>& input)
 	{
-		DNA_Codon input_dna_codon = input.DnaCodon();
+		DNA_Codon input_dna_codon = input->DnaCodon();
 		for (auto& x : _dna_codon_map)
 		{
 			if (x.second == input_dna_codon)
@@ -229,9 +225,9 @@ namespace bioutilities
 		}
 	}
 
-	std::string GeneticCodeFactory::CodonToRnaString(Codon& input)
+	std::string GeneticCodeFactory::CodonToRnaString(std::shared_ptr<Codon>& input)
 	{
-		RNA_Codon input_rna_codon = input.RnaCodon();
+		RNA_Codon input_rna_codon = input->RnaCodon();
 		for (auto& x : _rna_codon_map)
 		{
 			if (x.second == input_rna_codon)
@@ -239,9 +235,9 @@ namespace bioutilities
 		}
 	}
 
-	std::string GeneticCodeFactory::CodonToAA3CharString(Codon& input)
+	std::string GeneticCodeFactory::CodonToAA3CharString(std::shared_ptr<Codon>& input)
 	{
-		AA_3Char input_aa_3char = input.AA3Char();
+		AA_3Char input_aa_3char = input->AA3Char();
 		for (auto& x : _aa_3char_map)
 		{
 			if (x.second == input_aa_3char)
@@ -249,9 +245,9 @@ namespace bioutilities
 		}
 	}
 
-	std::string GeneticCodeFactory::CodonToAA1CharString(Codon& input)
+	std::string GeneticCodeFactory::CodonToAA1CharString(std::shared_ptr<Codon>& input)
 	{
-		AA_1Char input_aa_1char = input.AA1Char();
+		AA_1Char input_aa_1char = input->AA1Char();
 		for (auto& x : _aa_1char_map)
 		{
 			if (x.second == input_aa_1char)
@@ -267,7 +263,7 @@ namespace bioutilities
 		std::vector<Codon> _frame;
 	};
 
-	CodonSequence::CodonSequence(const std::vector<Codon>& frame, const size_t& start)
+	CodonSequence::CodonSequence(const std::vector<std::shared_ptr<Codon>>& frame, const size_t& start)
 	{
 		_frame = frame;
 		_size_in_codones = frame.size();
@@ -275,26 +271,24 @@ namespace bioutilities
 		_end = start + _size_in_codones * 3;
 	};
 
-	CodonSequence::~CodonSequence() {};
-
 	size_t CodonSequence::SizeInCodons() { return _size_in_codones; };
 	size_t CodonSequence::SizeInNucleotides() { return _size_in_codones * 3; };
 	size_t CodonSequence::Start() { return _start; };
 	size_t CodonSequence::End() { return _end; };
 
-	Codon& CodonSequence::At(size_t index)
+	std::shared_ptr<Codon> CodonSequence::At(size_t index)
 	{
 		return _frame.at(index);
 	};
 
-	void CodonSequence::PushBack(Codon Codon)
+	void CodonSequence::PushBack(const std::shared_ptr<Codon>& Codon)
 	{
 		_frame.push_back(Codon);
 	};
 
 	bool CodonSequence::operator==(CodonSequence& obj)
 	{
-		std::vector<Codon> obj_vector = obj.ToVector();
+		std::vector<std::shared_ptr<Codon>> obj_vector = obj.ToVector();
 		if (_frame.size() != obj_vector.size())
 			return false;
 		for (size_t i = 0; i < _frame.size(); ++i)
@@ -305,7 +299,7 @@ namespace bioutilities
 		return true;
 	}
 
-	std::vector<Codon> CodonSequence::ToVector()
+	std::vector<std::shared_ptr<Codon>> CodonSequence::ToVector()
 	{
 		return _frame;
 	}
@@ -322,29 +316,27 @@ namespace bioutilities
 	//GeneticCodeFactory class implementation end
 
 	//cDNA class implementation start
-	cDNA::~cDNA() {};
-
-									std::string cDNA::DatabaseID() { return _database_id; };
-									std::string cDNA::Gene() { return _gene_name; };
-									std::string cDNA::TranscriptID() { return _transcript_id; };
-									std::string cDNA::RawRnaDataString() { return _raw_rna_data_string; };
-									std::string cDNA::FivePrimeUTR() { return _5primeUTR; };
-									std::string cDNA::ThreePrimeUTR() { return _3primeUTR; };
-					bioutilities::CodonSequence cDNA::MainORF() { return _ORF; };
-	   std::vector<bioutilities::CodonSequence> cDNA::Frames() { return _frames; };
-	   std::vector<bioutilities::CodonSequence> cDNA::uORFs() { return _uORFs; };
-										 size_t cDNA::SumOfuORFs() { return _sum_of_uORFs; };
-							std::vector<size_t> cDNA::AataaStartIndexes() { return  _aataaa_start_indexes; };
+	std::string cDNA::DatabaseID() { return _database_id; };
+	std::string cDNA::Gene() { return _gene_name; };
+	std::string cDNA::TranscriptID() { return _transcript_id; };
+	std::string cDNA::RawRnaDataString() { return _raw_rna_data_string; };
+	std::string cDNA::FivePrimeUTR() { return _5primeUTR; };
+	std::string cDNA::ThreePrimeUTR() { return _3primeUTR; };
+	CodonSequence cDNA::MainORF() { return _ORF; };
+	std::vector<CodonSequence> cDNA::Frames() { return _frames; };
+	std::vector<CodonSequence> cDNA::uORFs() { return _uORFs; };
+	size_t cDNA::SumOfuORFs() { return _sum_of_uORFs; };
+	std::vector<size_t> cDNA::AataaStartIndexes() { return  _aataaa_start_indexes; };
 
 	void cDNA::CalculateAllORFs()
 	{
-		std::vector<bioutilities::Codon> uORF_buffer;
-		bioutilities::Codon current_genetic_code_unit = bioutilities::Codon(bioutilities::DNA_Codon::TAG,
-			bioutilities::RNA_Codon::UAG,
-			bioutilities::AA_3Char::Stop,
-			bioutilities::AA_1Char::Stop);
+		std::vector<std::shared_ptr<Codon>> uORF_buffer;
+		std::shared_ptr<Codon> current_genetic_code_unit = std::make_shared<Codon>(DNA_Codon::TAG,
+																					RNA_Codon::UAG,
+																					AA_3Char::Stop,
+																					AA_1Char::Stop);
 
-		bioutilities::GeneticCodeFactory factory = bioutilities::GeneticCodeFactory();
+		GeneticCodeFactory factory = GeneticCodeFactory();
 
 		bool translation = false;
 		for (size_t x = 0; x < _frames.size(); ++x)
@@ -352,7 +344,7 @@ namespace bioutilities
 			for (size_t y = 0; y < _frames.at(x).SizeInCodons(); ++y)
 			{
 				current_genetic_code_unit = _frames.at(x).At(y);
-				if (current_genetic_code_unit.AA3Char() == bioutilities::AA_3Char::Met)
+				if (current_genetic_code_unit->AA3Char() == AA_3Char::Met)
 				{
 					translation = true;
 					uORF_buffer.push_back(current_genetic_code_unit);
@@ -363,14 +355,14 @@ namespace bioutilities
 					uORF_buffer.push_back(current_genetic_code_unit);
 				}
 
-				if ((current_genetic_code_unit.AA3Char() == bioutilities::AA_3Char::Stop) || (y == _frames.at(x).SizeInCodons() - 1))
+				if ((current_genetic_code_unit->AA3Char() == AA_3Char::Stop) || (y == _frames.at(x).SizeInCodons() - 1))
 				{
 					translation = false;
 					if (!uORF_buffer.empty())
 					{
 						size_t start_of_uORF_in_frame = (((y + 1) * 3) - (uORF_buffer.size() * 3) + x);  //ORF enumeration starts from 1
 
-						_uORFs.push_back(bioutilities::CodonSequence(uORF_buffer, start_of_uORF_in_frame));
+						_uORFs.push_back(CodonSequence(uORF_buffer, start_of_uORF_in_frame));
 						uORF_buffer.clear();
 					}
 				}
@@ -378,11 +370,11 @@ namespace bioutilities
 		}
 	}
 
-	void cDNA::CalculateThreeFrames(std::string& raw_sequense, bioutilities::GeneticCodeFactory& factory)
+	void cDNA::CalculateThreeFrames(std::string& raw_sequense, GeneticCodeFactory& factory)
 	{
 		for (size_t x = 0; x < 3; ++x)
 		{
-			std::vector<bioutilities::Codon> buffer;
+			std::vector<std::shared_ptr<Codon>> buffer;
 			size_t y = 0;
 			for (; y < raw_sequense.length(); y += 3)
 			{
@@ -390,13 +382,13 @@ namespace bioutilities
 					continue;
 				buffer.push_back(factory.DnaCodon(raw_sequense.substr(x + y, 3)));
 			}
-			_frames.push_back(bioutilities::CodonSequence(buffer, 0));
+			_frames.push_back(CodonSequence(buffer, 0));
 		}
 	}
 
 	void cDNA::SortOnlyMicroORFs()
 	{
-		std::vector<bioutilities::CodonSequence> temp_uORFs;
+		std::vector<CodonSequence> temp_uORFs;
 		for (size_t x = 0; x < _uORFs.size(); ++x)
 		{
 			if (_uORFs.at(x).Start() < _ORF.Start())
@@ -420,7 +412,7 @@ namespace bioutilities
 		}
 	}
 
-	void cDNA::CalculateUtrRegions(bioutilities::GeneticCodeFactory& factory)
+	void cDNA::CalculateUtrRegions(GeneticCodeFactory& factory)
 	{
 		_5primeUTR = _raw_rna_data_string.substr(0, _ORF.Start());
 		_3primeUTR = _raw_rna_data_string.substr(_ORF.End(), _raw_rna_data_string.length());

@@ -156,14 +156,14 @@
     <ClCompile Include="src\db_data.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\bioutilities.cpp" />
-    <ClCompile Include="src\splited_string.cpp" />
+    <ClCompile Include="src\string_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\app.h" />
-    <ClInclude Include="src\db_data.h" />
-    <ClInclude Include="src\input.h" />
-    <ClInclude Include="src\bioutilities.h" />
-    <ClInclude Include="src\splited_string.h" />
+    <ClInclude Include="src\app.hpp" />
+    <ClInclude Include="src\db_data.hpp" />
+    <ClInclude Include="src\input.hpp" />
+    <ClInclude Include="src\bioutilities.hpp" />
+    <ClInclude Include="src\string_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />

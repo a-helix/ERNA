@@ -4,8 +4,8 @@
 #include <stdexcept>
 #include <filesystem>
 #include <iostream>
-#include "bioutilities.h"
-#include "db_data.h"
+#include "bioutilities.hpp"
+#include "db_data.hpp"
 
 namespace input
 {
@@ -13,9 +13,7 @@ namespace input
 	{
 		public:
 			explicit InputFile(const std::filesystem::path& path_to_file);
-			virtual ~InputFile();
 			virtual void Save(const std::filesystem::path& path_to_file, const char& delimiter) = 0;
-			InputFile() = delete;
 
 		protected:
 			std::vector<std::string> _file_data;
@@ -25,13 +23,11 @@ namespace input
 	{
 		public:
 			explicit WormBaseRnaSequencesFile(const std::filesystem::path& path_to_file, const char& delimiter, bioutilities::GeneticCodeFactory& factory);
-			virtual ~WormBaseRnaSequencesFile();
-			WormBaseRnaSequencesFile() = delete;
 
 			void Save(const std::filesystem::path& path_to_file, const char& delimiter) override;
 
 		protected:
-			std::vector<db_data::WormBaseComplementaryDna> _delimited_rna_data;
+			std::vector<db_data::WormBaseRnaComplementaryDna> _delimited_rna_data;
 	};
 
 	

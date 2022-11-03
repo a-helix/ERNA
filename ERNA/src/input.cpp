@@ -1,4 +1,4 @@
-#include "input.h"
+#include "input.hpp"
 
 namespace input
 {
@@ -23,23 +23,17 @@ namespace input
 		}
 	}
 
-	InputFile::~InputFile() {}
-
-
 	WormBaseRnaSequencesFile::WormBaseRnaSequencesFile(const std::filesystem::path& path_to_file, const char& delimiter, bioutilities::GeneticCodeFactory& factory)
 		: InputFile(path_to_file)
 	{
 		for (auto& x : _file_data)
 		{
-			_delimited_rna_data.push_back(db_data::WormBaseComplementaryDna(x, delimiter, factory));
+			_delimited_rna_data.push_back(db_data::WormBaseRnaComplementaryDna(x, delimiter, factory));
 		}
 	}
 
-	WormBaseRnaSequencesFile::~WormBaseRnaSequencesFile() {};
 	void WormBaseRnaSequencesFile::Save(const std::filesystem::path& path_to_file, const char& delimiter)
 	{
-		
-
 		std::ofstream file_stream;
 		file_stream.open(path_to_file);
 		int32_t distance; // Distance between ORF start and uORF stop codone

@@ -1,8 +1,8 @@
-#include "db_data.h"
+#include "db_data.hpp"
 
 namespace db_data
 {
-	WormBaseComplementaryDna::WormBaseComplementaryDna(const std::string& input_data, const char& delimiter, bioutilities::GeneticCodeFactory& factory)
+	WormBaseRnaComplementaryDna::WormBaseRnaComplementaryDna(const std::string& input_data, const char& delimiter, bioutilities::GeneticCodeFactory& factory)
 	{ 
 		_ORF = bioutilities::CodonSequence();
 		_delimiter_separated_input = splited_string::SplitedString(input_data, delimiter).ToVector();
@@ -21,17 +21,13 @@ namespace db_data
 		FindAATAAASequences();
 	};
 
-	WormBaseComplementaryDna::~WormBaseComplementaryDna() {};
-	
-	void WormBaseComplementaryDna::AssignSplitedData()
+	void WormBaseRnaComplementaryDna::AssignSplitedData()
 	{
 		_database_id = _delimiter_separated_input[0];
 		_gene_name = _delimiter_separated_input[1];
 		_transcript_id = _delimiter_separated_input[2];
 		std::string _raw_rna_data_string_no_case = _delimiter_separated_input[3];
-
 		std::transform(_raw_rna_data_string_no_case.begin(), _raw_rna_data_string_no_case.end(), _raw_rna_data_string_no_case.begin(), ::toupper);
 		_raw_rna_data_string = _raw_rna_data_string_no_case;
-
 	}
 }
