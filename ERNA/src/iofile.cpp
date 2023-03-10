@@ -1,6 +1,6 @@
-#include "input.hpp"
+#include "iofile.hpp"
 
-namespace input
+namespace iofile
 {
 	InputFile::InputFile(const std::filesystem::path& path_to_file)
 	{

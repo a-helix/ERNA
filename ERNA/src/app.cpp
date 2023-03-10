@@ -9,7 +9,7 @@ namespace app
 		_argv = argv;
 	}
 
-	void App::WrongArgumentFormat(const int32_t& iteration)
+	void App::WrongArgumentFormat(int32_t iteration)
 	{
 		if (iteration + 1 >= _argc)
 		{
@@ -17,9 +17,10 @@ namespace app
 		}
 	}
 
-	char App::ProcessDelimiter(const char& delimiter)
+	char App::ProcessDelimiter(char delimiter)
 	{
 		auto map_parsed_delimiter = comand_line_delimiters.find(delimiter);
+
 		if (map_parsed_delimiter != comand_line_delimiters.end())
 		{
 			return map_parsed_delimiter->second;
@@ -47,24 +48,24 @@ namespace app
 					// TODO: add some help info
 				}
 
-				else if (console_argument.compare("-i") == 0)
+				else if (console_argument.compare("-if") == 0)
 				{
 					WrongArgumentFormat(i);
-					input_file = std::format(R"({})", _argv[i + 1]);
-					if (!std::filesystem::exists(input_file))
+					_input_file = std::format(R"({})", _argv[i + 1]);
+					if (!std::filesystem::exists(_input_file))
 					{
-						throw std::invalid_argument(std::format("ERROR! Input file doesn't exhist : {}\n", input_file.string()));
+						throw std::invalid_argument(std::format("ERROR! Input file doesn't exhist : {}\n", _input_file.string()));
 					}
 					i++;
 				}
 
-				else if (console_argument.compare("-o") == 0)
+				else if (console_argument.compare("-of") == 0)
 				{
 					WrongArgumentFormat(i);
-					output_file = std::format(R"({})", _argv[i + 1]);
-					if (!std::filesystem::exists(output_file.parent_path()))
+					_output_file = std::format(R"({})", _argv[i + 1]);
+					if (!std::filesystem::exists(_output_file.parent_path()))
 					{
-						throw std::invalid_argument(std::format("ERROR! Output folder doesn't exhist : {}\n", output_file.parent_path().string()));
+						throw std::invalid_argument(std::format("ERROR! Output folder doesn't exhist : {}\n", _output_file.parent_path().string()));
 					}
 					i++;
 				}
@@ -72,21 +73,21 @@ namespace app
 				else if (console_argument.compare("-id") == 0)
 				{
 					WrongArgumentFormat(i);
-					input_delimiter = ProcessDelimiter(*_argv[i + 1]);
+					_input_delimiter = ProcessDelimiter(*_argv[i + 1]);
 					i++;
 				}
 
 				else if (console_argument.compare("-od") == 0)
 				{
 					WrongArgumentFormat(i);
-					output_delimiter = ProcessDelimiter(*_argv[i + 1]);
+					_output_delimiter = ProcessDelimiter(*_argv[i + 1]);
 					i++;
 				}
 
-				else if (console_argument.compare("-wbuorf") == 0)
+				else if (console_argument.compare("-wbuorf") == 0) //HERE should be changed
 				{
-					input::WormBaseRnaSequencesFile file = input::WormBaseRnaSequencesFile(input_file, input_delimiter, factory);
-					file.Save(output_file, output_delimiter);
+					iofile::WormBaseRnaSequencesFile file = iofile::WormBaseRnaSequencesFile(_input_file, _input_delimiter, factory);
+					file.Save(_output_file, _output_delimiter);
 				}
 
 				else

@@ -5,7 +5,8 @@ namespace db_data
 	WormBaseRnaComplementaryDna::WormBaseRnaComplementaryDna(const std::string& input_data, const char& delimiter, bioutilities::GeneticCodeFactory& factory)
 	{ 
 		_ORF = bioutilities::CodonSequence();
-		_delimiter_separated_input = splited_string::SplitedString(input_data, delimiter).ToVector();
+		//Here
+		_delimiter_separated_input = bioutilities::SplitStringToVector(input_data, delimiter);
 		AssignSplitedData();
 		CalculateThreeFrames(_raw_rna_data_string, factory);
 		CalculateAllORFs();

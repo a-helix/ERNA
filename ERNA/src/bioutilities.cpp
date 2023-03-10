@@ -429,4 +429,18 @@ namespace bioutilities
 		}
 	}
 	//cDNA class implementation end
+
+	std::vector<std::string> bioutilities::SplitStringToVector(const std::string& string, char delimiter)
+	{
+		std::vector<std::string> splited_string;
+		std::stringstream string_stream(string);
+		std::string temp;
+
+		while (std::getline(string_stream, temp, delimiter))
+		{
+			splited_string.push_back(temp);
+		}
+
+		return splited_string;
+	}
 }

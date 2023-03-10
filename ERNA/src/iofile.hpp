@@ -7,7 +7,7 @@
 #include "bioutilities.hpp"
 #include "db_data.hpp"
 
-namespace input
+namespace iofile
 {
 	class InputFile
 	{
