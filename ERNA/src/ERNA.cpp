@@ -1,6 +1,3 @@
-#include <iostream>
-#include <format>
-#include "iofile.hpp"
 #include "app.hpp"
 
 
@@ -20,4 +17,6 @@ int main(int32_t argc, char* argv[])
 		-ap 6 							(additional parameter)
 		uorfs 							(type of operation)
 	*/
+
+	//.\ERNA.exe -if .\test.tsv -of .\result.csv -id t -uorfs
 }
